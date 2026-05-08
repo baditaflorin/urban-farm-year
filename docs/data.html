@@ -1,0 +1,26 @@
+<h1 id="data-contract">Data Contract</h1>
+<p>The static data contract is versioned under <code>/data/v1</code>.</p>
+<h2 id="files">Files</h2>
+<ul>
+  <li><code>/data/v1/crops.json</code>: crop planning and care reference data.</li>
+  <li>
+    <code>/data/v1/locations.json</code>: GeoNames-style seed locations for quick location setup.
+  </li>
+  <li><code>/data/v1/garden-data.meta.json</code>: generation metadata.</li>
+</ul>
+<h2 id="freshness">Freshness</h2>
+<p>
+  The frontend reads <code>/data/v1/garden-data.meta.json</code> and shows when the data was
+  generated.
+</p>
+<p>Regenerate data:</p>
+<div class="sourceCode" id="cb1">
+  <pre
+    class="sourceCode sh"
+  ><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> data</span></code></pre>
+</div>
+<h2 id="versioning">Versioning</h2>
+<p>
+  Compatible changes keep <code>/data/v1</code>. Breaking schema changes move to
+  <code>/data/v2</code>.
+</p>

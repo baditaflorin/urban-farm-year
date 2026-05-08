@@ -1,7 +1,7 @@
 {
   "schema_version": "1",
-  "generated_at": "2026-05-08T08:35:42Z",
-  "source_commit": "5ada3db",
+  "generated_at": "2026-05-08T09:21:21Z",
+  "source_commit": "0720d0b",
   "input_checksums": {
     "crops.csv": "8247ccd955461fd249a0e058c1b058667705f661d2eb7a92f6e213ff940988e9",
     "geonames_seed.csv": "82d22ab57c66c639b72a0883821ca02e0df10b5e578519935cf451bf381ecc30"

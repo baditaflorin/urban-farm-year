@@ -1,0 +1,10 @@
+node_modules/
+docs/assets/
+docs/data/
+docs/models/
+public/assets/*.png
+public/models/*.onnx
+coverage/
+playwright-report/
+test-results/
+.venv/

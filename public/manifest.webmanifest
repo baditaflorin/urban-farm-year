@@ -1,0 +1,11 @@
+{
+  "name": "Urban Farm Year",
+  "short_name": "Farm Year",
+  "description": "Static, offline-friendly planning for the full gardening and urban farming year.",
+  "start_url": "/urban-farm-year/",
+  "scope": "/urban-farm-year/",
+  "display": "standalone",
+  "background_color": "#f8f5ec",
+  "theme_color": "#14634f",
+  "icons": []
+}
