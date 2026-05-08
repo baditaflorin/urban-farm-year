@@ -1,7 +1,7 @@
 SHELL := /bin/sh
 
 VERSION ?= $(shell node -p "require('./package.json').version")
-SOURCE_COMMIT ?= $(shell git log -1 --format=%h -- src package.json package-lock.json public data cmd internal index.html vite.config.ts 2>/dev/null || echo local)
+SOURCE_COMMIT ?= $(shell git log -1 --format=%h -- src package.json package-lock.json data cmd internal index.html vite.config.ts 2>/dev/null || echo local)
 GOPKGS ?= $(shell go list ./... | grep -v '/node_modules/')
 
 .PHONY: help install-hooks dev build data test test-integration smoke lint fmt pages-preview release clean hooks-pre-commit hooks-commit-msg hooks-pre-push docs-export
