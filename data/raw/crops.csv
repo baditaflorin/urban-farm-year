@@ -1,0 +1,21 @@
+id,name,family,crop_type,frost_hardiness,season,days_to_maturity,indoor_start_weeks_before_last_frost,direct_sow_weeks_before_last_frost,transplant_weeks_after_last_frost,harvest_start_days_after_plant,harvest_window_days,spacing_cm,water_mm_per_week,sun_hours_min,ph_min,ph_max,feed_level,companions,avoid_after_family,notes
+arugula,Arugula,Brassicaceae,leaf,hardy,cool,35,0,-4,0,25,35,10,18,4,6.0,7.0,light,lettuce|radish|carrot,Brassicaceae,Fast succession crop for containers
+basil,Basil,Lamiaceae,herb,tender,warm,68,6,2,2,45,70,25,25,6,6.0,7.5,medium,tomato|pepper|oregano,Lamiaceae,Pinch tips weekly for bushy growth
+beans-bush,Bush Beans,Fabaceae,fruit,tender,warm,55,0,1,0,45,45,15,25,6,6.0,7.0,light,corn|cucumber|carrot,Fabaceae,Sow every 2 weeks while soil is warm
+beet,Beet,Amaranthaceae,root,semi-hardy,cool,58,0,-3,0,45,35,8,20,5,6.0,7.5,medium,lettuce|onion|kale,Amaranthaceae,Harvest greens lightly while roots size up
+carrot,Carrot,Apiaceae,root,hardy,cool,70,0,-3,0,55,45,5,18,6,6.0,7.0,light,onion|lettuce|pea,Apiaceae,Keep seed bed evenly moist until germination
+cucumber,Cucumber,Cucurbitaceae,fruit,tender,warm,58,3,2,2,45,55,45,30,7,6.0,7.0,heavy,beans-bush|dill|radish,Cucurbitaceae,Trellis to save space and reduce mildew
+kale,Kale,Brassicaceae,leaf,hardy,cool,60,6,-4,0,40,90,30,22,5,6.0,7.5,medium,onion|beet|herbs,Brassicaceae,Best flavor after cool nights
+lettuce,Lettuce,Asteraceae,leaf,semi-hardy,cool,45,4,-4,0,30,50,20,18,4,6.0,7.0,light,carrot|radish|strawberry,Asteraceae,Use shade cloth in warm spells
+mint,Mint,Lamiaceae,herb,hardy,warm,80,6,2,2,50,120,30,25,4,6.0,7.5,medium,cabbage|tomato,Lamiaceae,Grow in containers to control spread
+onion,Onion,Amaryllidaceae,bulb,hardy,cool,110,10,-4,0,90,35,10,18,6,6.0,7.0,medium,carrot|beet|lettuce,Amaryllidaceae,Needs consistent moisture during bulbing
+parsley,Parsley,Apiaceae,herb,semi-hardy,cool,75,8,-2,1,55,80,20,20,5,6.0,7.5,medium,tomato|asparagus|chive,Apiaceae,Soak seed overnight for faster germination
+pea,Pea,Fabaceae,fruit,hardy,cool,62,0,-5,0,50,35,8,22,5,6.0,7.5,light,carrot|radish|turnip,Fabaceae,Use a compact trellis in containers
+pepper,Pepper,Solanaceae,fruit,tender,warm,78,8,3,3,65,80,35,25,7,6.0,7.0,heavy,basil|onion|carrot,Solanaceae,Wait for warm nights before transplanting
+radish,Radish,Brassicaceae,root,hardy,cool,28,0,-4,0,22,20,5,16,4,6.0,7.0,light,lettuce|pea|carrot,Brassicaceae,Excellent marker crop for slow germinators
+spinach,Spinach,Amaranthaceae,leaf,hardy,cool,42,0,-5,0,30,40,15,20,4,6.0,7.5,medium,strawberry|pea|radish,Amaranthaceae,Bolts quickly in heat
+strawberry,Strawberry,Rosaceae,fruit,semi-hardy,perennial,120,0,2,1,90,30,30,25,6,5.8,6.8,medium,lettuce|spinach|thyme,Rosaceae,Remove first flowers on new plants for stronger roots
+swiss-chard,Swiss Chard,Amaranthaceae,leaf,semi-hardy,cool,55,4,-3,1,40,90,25,22,5,6.0,7.5,medium,onion|beans-bush|lettuce,Amaranthaceae,Cut outer leaves and keep the crown growing
+thyme,Thyme,Lamiaceae,herb,semi-hardy,warm,90,8,2,2,60,120,25,12,6,6.0,8.0,light,cabbage|strawberry|tomato,Lamiaceae,Prefers lean soil and sharp drainage
+tomato,Tomato,Solanaceae,fruit,tender,warm,75,8,3,2,65,75,45,30,8,6.0,6.8,heavy,basil|parsley|marigold,Solanaceae,Prune lower leaves and water deeply
+zucchini,Zucchini,Cucurbitaceae,fruit,tender,warm,50,3,2,2,40,60,60,35,7,6.0,7.5,heavy,nasturtium|beans-bush|radish,Cucurbitaceae,Harvest small for best texture
