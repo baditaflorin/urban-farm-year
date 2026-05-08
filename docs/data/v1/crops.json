@@ -20,11 +20,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "light",
-      "companions": [
-        "lettuce",
-        "radish",
-        "carrot"
-      ],
+      "companions": ["lettuce", "radish", "carrot"],
       "avoid_after_family": "Brassicaceae",
       "notes": "Fast succession crop for containers"
     },
@@ -47,11 +43,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "medium",
-      "companions": [
-        "tomato",
-        "pepper",
-        "oregano"
-      ],
+      "companions": ["tomato", "pepper", "oregano"],
       "avoid_after_family": "Lamiaceae",
       "notes": "Pinch tips weekly for bushy growth"
     },
@@ -74,11 +66,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "light",
-      "companions": [
-        "corn",
-        "cucumber",
-        "carrot"
-      ],
+      "companions": ["corn", "cucumber", "carrot"],
       "avoid_after_family": "Fabaceae",
       "notes": "Sow every 2 weeks while soil is warm"
     },
@@ -101,11 +89,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "medium",
-      "companions": [
-        "lettuce",
-        "onion",
-        "kale"
-      ],
+      "companions": ["lettuce", "onion", "kale"],
       "avoid_after_family": "Amaranthaceae",
       "notes": "Harvest greens lightly while roots size up"
     },
@@ -128,11 +112,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "light",
-      "companions": [
-        "onion",
-        "lettuce",
-        "pea"
-      ],
+      "companions": ["onion", "lettuce", "pea"],
       "avoid_after_family": "Apiaceae",
       "notes": "Keep seed bed evenly moist until germination"
     },
@@ -155,11 +135,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "heavy",
-      "companions": [
-        "beans-bush",
-        "dill",
-        "radish"
-      ],
+      "companions": ["beans-bush", "dill", "radish"],
       "avoid_after_family": "Cucurbitaceae",
       "notes": "Trellis to save space and reduce mildew"
     },
@@ -182,11 +158,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "medium",
-      "companions": [
-        "onion",
-        "beet",
-        "herbs"
-      ],
+      "companions": ["onion", "beet", "herbs"],
       "avoid_after_family": "Brassicaceae",
       "notes": "Best flavor after cool nights"
     },
@@ -209,11 +181,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "light",
-      "companions": [
-        "carrot",
-        "radish",
-        "strawberry"
-      ],
+      "companions": ["carrot", "radish", "strawberry"],
       "avoid_after_family": "Asteraceae",
       "notes": "Use shade cloth in warm spells"
     },
@@ -236,10 +204,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "medium",
-      "companions": [
-        "cabbage",
-        "tomato"
-      ],
+      "companions": ["cabbage", "tomato"],
       "avoid_after_family": "Lamiaceae",
       "notes": "Grow in containers to control spread"
     },
@@ -262,11 +227,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "medium",
-      "companions": [
-        "carrot",
-        "beet",
-        "lettuce"
-      ],
+      "companions": ["carrot", "beet", "lettuce"],
       "avoid_after_family": "Amaryllidaceae",
       "notes": "Needs consistent moisture during bulbing"
     },
@@ -289,11 +250,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "medium",
-      "companions": [
-        "tomato",
-        "asparagus",
-        "chive"
-      ],
+      "companions": ["tomato", "asparagus", "chive"],
       "avoid_after_family": "Apiaceae",
       "notes": "Soak seed overnight for faster germination"
     },
@@ -316,11 +273,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "light",
-      "companions": [
-        "carrot",
-        "radish",
-        "turnip"
-      ],
+      "companions": ["carrot", "radish", "turnip"],
       "avoid_after_family": "Fabaceae",
       "notes": "Use a compact trellis in containers"
     },
@@ -343,11 +296,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "heavy",
-      "companions": [
-        "basil",
-        "onion",
-        "carrot"
-      ],
+      "companions": ["basil", "onion", "carrot"],
       "avoid_after_family": "Solanaceae",
       "notes": "Wait for warm nights before transplanting"
     },
@@ -370,11 +319,7 @@
       "ph_min": 6,
       "ph_max": 7,
       "feed_level": "light",
-      "companions": [
-        "lettuce",
-        "pea",
-        "carrot"
-      ],
+      "companions": ["lettuce", "pea", "carrot"],
       "avoid_after_family": "Brassicaceae",
       "notes": "Excellent marker crop for slow germinators"
     },
@@ -397,11 +342,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "medium",
-      "companions": [
-        "strawberry",
-        "pea",
-        "radish"
-      ],
+      "companions": ["strawberry", "pea", "radish"],
       "avoid_after_family": "Amaranthaceae",
       "notes": "Bolts quickly in heat"
     },
@@ -424,11 +365,7 @@
       "ph_min": 5.8,
       "ph_max": 6.8,
       "feed_level": "medium",
-      "companions": [
-        "lettuce",
-        "spinach",
-        "thyme"
-      ],
+      "companions": ["lettuce", "spinach", "thyme"],
       "avoid_after_family": "Rosaceae",
       "notes": "Remove first flowers on new plants for stronger roots"
     },
@@ -451,11 +388,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "medium",
-      "companions": [
-        "onion",
-        "beans-bush",
-        "lettuce"
-      ],
+      "companions": ["onion", "beans-bush", "lettuce"],
       "avoid_after_family": "Amaranthaceae",
       "notes": "Cut outer leaves and keep the crown growing"
     },
@@ -478,11 +411,7 @@
       "ph_min": 6,
       "ph_max": 8,
       "feed_level": "light",
-      "companions": [
-        "cabbage",
-        "strawberry",
-        "tomato"
-      ],
+      "companions": ["cabbage", "strawberry", "tomato"],
       "avoid_after_family": "Lamiaceae",
       "notes": "Prefers lean soil and sharp drainage"
     },
@@ -505,11 +434,7 @@
       "ph_min": 6,
       "ph_max": 6.8,
       "feed_level": "heavy",
-      "companions": [
-        "basil",
-        "parsley",
-        "marigold"
-      ],
+      "companions": ["basil", "parsley", "marigold"],
       "avoid_after_family": "Solanaceae",
       "notes": "Prune lower leaves and water deeply"
     },
@@ -532,11 +457,7 @@
       "ph_min": 6,
       "ph_max": 7.5,
       "feed_level": "heavy",
-      "companions": [
-        "nasturtium",
-        "beans-bush",
-        "radish"
-      ],
+      "companions": ["nasturtium", "beans-bush", "radish"],
       "avoid_after_family": "Cucurbitaceae",
       "notes": "Harvest small for best texture"
     }

@@ -1,7 +1,7 @@
 SHELL := /bin/sh
 
 VERSION ?= $(shell node -p "require('./package.json').version")
-COMMIT ?= $(shell git rev-parse --short HEAD 2>/dev/null || echo local)
+SOURCE_COMMIT ?= $(shell git log -1 --format=%h -- src package.json package-lock.json public data cmd internal index.html vite.config.ts 2>/dev/null || echo local)
 GOPKGS ?= $(shell go list ./... | grep -v '/node_modules/')
 
 .PHONY: help install-hooks dev build data test test-integration smoke lint fmt pages-preview release clean hooks-pre-commit hooks-commit-msg hooks-pre-push docs-export
@@ -27,14 +27,16 @@ install-hooks:
 dev:
 	npm run dev
 
-build: data
+build:
 	rm -rf docs/assets docs/models docs/data docs/manifest.webmanifest docs/sw.js docs/404.html
-	VITE_APP_VERSION=$(VERSION) VITE_GIT_COMMIT=$(COMMIT) npm run build
+	VITE_APP_VERSION=$(VERSION) VITE_GIT_COMMIT=$(SOURCE_COMMIT) npm run build
 	cp docs/index.html docs/404.html
+	npx prettier --write docs/index.html docs/404.html >/dev/null
 	test -s docs/index.html
 
 data:
 	go run ./cmd/build-data --start 0 --end 0 --concurrency 1 --saveEvery 100
+	npx prettier --write public/data/v1/*.json >/dev/null
 
 test:
 	npm run test
