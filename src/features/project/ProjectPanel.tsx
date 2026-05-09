@@ -180,7 +180,8 @@ export function ProjectPanel({
         <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto_auto]">
           <label className="field">
             <span>Paste or edit input before import</span>
-            <input
+            <textarea
+              className="min-h-28"
               value={rawInput}
               onChange={(event) => setRawInput(event.target.value)}
               placeholder="Paste garden text, CSV, TSV, HTML text, or project JSON"
@@ -326,9 +327,6 @@ export function ProjectPanel({
             title="Share URL"
             detail="Small browser hash snapshot for quick handoff. Large projects should use JSON."
             onCopy={() => void copyShareUrl()}
-            onDownload={() =>
-              downloadText(primaryExport.fileName, primaryExport.body, primaryExport.mime)
-            }
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -340,7 +338,7 @@ export function ProjectPanel({
             }
           >
             <Download size={18} aria-hidden="true" />
-            Download Primary Export
+            Download Primary Export ({state.settings.primaryExportFormat})
           </button>
           <button className="button button-secondary" type="button" onClick={() => window.print()}>
             <Printer size={18} aria-hidden="true" />
@@ -456,7 +454,7 @@ function OutputCard({
   title: string;
   detail: string;
   onCopy: () => void;
-  onDownload: () => void;
+  onDownload?: () => void;
 }) {
   return (
     <article className="output-card">
@@ -469,10 +467,12 @@ function OutputCard({
           <ClipboardCopy size={18} aria-hidden="true" />
           Copy
         </button>
-        <button className="button button-secondary" type="button" onClick={onDownload}>
-          <Download size={18} aria-hidden="true" />
-          Download
-        </button>
+        {onDownload ? (
+          <button className="button button-secondary" type="button" onClick={onDownload}>
+            <Download size={18} aria-hidden="true" />
+            Download
+          </button>
+        ) : null}
       </div>
     </article>
   );
