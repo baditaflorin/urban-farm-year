@@ -1,0 +1,4 @@
+source: https://download.geonames.org/export/dump/
+geonameid	name	asciiname	alternatenames	latitude	longitude	country	timezone
+665087	Timișoara	Timisoara	Temesvar,Timisoara,Timişoara	45.75372	21.22571	RO	Europe/Bucharest
+3448439	São Paulo	Sao Paulo	Sampa,Sao Paulo,São Paulo	-23.5475	-46.63611	BR	America/Sao_Paulo

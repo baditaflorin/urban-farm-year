@@ -1,0 +1,11 @@
+{
+  "kind": "soil_report",
+  "minConfidence": 0.8,
+  "fields": [
+    { "key": "ph", "value": 5.8 },
+    { "key": "buffer_ph", "value": 6.7 },
+    { "key": "organic_matter_pct", "value": 3.1 },
+    { "key": "phosphorus_ppm", "value": 22 },
+    { "key": "potassium_ppm", "value": 164 }
+  ]
+}

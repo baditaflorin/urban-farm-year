@@ -1,0 +1,11 @@
+{
+  "kind": "planting_guide",
+  "minConfidence": 0.65,
+  "fields": [
+    { "key": "region", "value": "Northern Illinois" },
+    { "key": "crop", "value": "lettuce" },
+    { "key": "crop", "value": "tomato" },
+    { "key": "season_window", "value": "fall" },
+    { "key": "spacing_cm", "value": 91 }
+  ]
+}

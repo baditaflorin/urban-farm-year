@@ -1,0 +1,4 @@
+source: https://huggingface.co/datasets/mohanty/PlantVillage
+filename,class,variant
+tomato_early_blight_001.JPG,Tomato___Early_blight,color
+pepper_bell_healthy_021.JPG,Pepper_bell___healthy,segmented

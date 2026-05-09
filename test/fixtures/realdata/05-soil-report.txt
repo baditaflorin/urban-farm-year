@@ -1,0 +1,8 @@
+source: https://extension.umn.edu/testing-and-analysis/understanding-soil-test-report
+Soil Test Report: Vegetable Garden A
+pH 5,8
+Buffer pH 6.7
+Organic matter 3.1%
+Phosphorus Bray P1 22 ppm
+Potassium 164 ppm
+Lime recommendation 40 lb per 1000 sq ft

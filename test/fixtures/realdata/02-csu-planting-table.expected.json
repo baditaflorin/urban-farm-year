@@ -1,0 +1,11 @@
+{
+  "kind": "planting_guide",
+  "minConfidence": 0.7,
+  "fields": [
+    { "key": "crop", "value": "lettuce" },
+    { "key": "crop", "value": "carrot" },
+    { "key": "crop", "value": "bean" },
+    { "key": "days_to_maturity", "value": 55 },
+    { "key": "spacing_cm", "value": 30 }
+  ]
+}

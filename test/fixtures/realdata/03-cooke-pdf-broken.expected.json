@@ -1,0 +1,12 @@
+{
+  "kind": "planting_guide",
+  "minConfidence": 0.55,
+  "fields": [
+    { "key": "crop", "value": "bean" },
+    { "key": "crop", "value": "beet" },
+    { "key": "crop", "value": "carrot" },
+    { "key": "spacing_cm", "value": 5 },
+    { "key": "days_to_maturity", "value": 70 }
+  ],
+  "anomalies": ["wrapped_word"]
+}

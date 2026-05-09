@@ -1,0 +1,13 @@
+{
+  "kind": "seed_packet",
+  "minConfidence": 0.7,
+  "fields": [
+    { "key": "crop", "value": "tomato" },
+    { "key": "variety", "value": "Red Pride" },
+    { "key": "days_to_maturity", "value": 78 },
+    { "key": "indoor_start_weeks_before_last_frost", "value": 5 },
+    { "key": "spacing_cm", "value": 61 },
+    { "key": "soil_temperature_c_min", "value": 21 },
+    { "key": "soil_temperature_c_max", "value": 32 }
+  ]
+}

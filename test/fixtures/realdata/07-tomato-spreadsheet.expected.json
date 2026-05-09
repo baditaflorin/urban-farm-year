@@ -1,0 +1,12 @@
+{
+  "kind": "harvest_log",
+  "minConfidence": 0.65,
+  "fields": [
+    { "key": "variety", "value": "San Marzano" },
+    { "key": "count", "value": 6 },
+    { "key": "quantity", "value": 400 },
+    { "key": "unit", "value": "g" },
+    { "key": "unit", "value": "lb" }
+  ],
+  "anomalies": ["harvest_shorthand"]
+}

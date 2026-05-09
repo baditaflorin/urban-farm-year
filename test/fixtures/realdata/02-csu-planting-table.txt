@@ -1,0 +1,5 @@
+source: https://extension.colostate.edu/resource/vegetable-planting-guide/
+Crop  Soil temp F  Seed depth  Plant spacing  Days to harvest
+Lettuce 40-80 1/4 in 8-12 in 45-55
+Carrot 45-85 1/4 in 2-3 in 65-75
+Bean, bush 60-95 1 in 2-4 in 50-60

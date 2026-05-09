@@ -1,0 +1,10 @@
+{
+  "kind": "location_record",
+  "minConfidence": 0.85,
+  "fields": [
+    { "key": "location_name", "value": "Timișoara" },
+    { "key": "latitude", "value": 45.75372 },
+    { "key": "longitude", "value": 21.22571 },
+    { "key": "timezone", "value": "Europe/Bucharest" }
+  ]
+}

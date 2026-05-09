@@ -1,0 +1,10 @@
+{
+  "kind": "plant_image_manifest",
+  "minConfidence": 0.7,
+  "fields": [
+    { "key": "crop", "value": "tomato" },
+    { "key": "condition", "value": "Early blight" },
+    { "key": "condition", "value": "healthy" }
+  ],
+  "anomalies": ["classifier_scope"]
+}

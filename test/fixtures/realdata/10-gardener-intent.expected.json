@@ -1,0 +1,10 @@
+{
+  "kind": "gardener_intent",
+  "minConfidence": 0.6,
+  "fields": [
+    { "key": "crop", "value": "tomato" },
+    { "key": "planting_date", "value": "04-21" },
+    { "key": "intent", "value": "reminders" },
+    { "key": "intent", "value": "succession" }
+  ]
+}

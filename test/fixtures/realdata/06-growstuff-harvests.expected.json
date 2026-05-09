@@ -1,0 +1,11 @@
+{
+  "kind": "harvest_log",
+  "minConfidence": 0.85,
+  "fields": [
+    { "key": "crop", "value": "tomato" },
+    { "key": "crop", "value": "basil" },
+    { "key": "quantity", "value": 2.5 },
+    { "key": "unit", "value": "kg" },
+    { "key": "plant_part", "value": "fruit" }
+  ]
+}
