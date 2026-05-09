@@ -1,6 +1,6 @@
 {
   "name": "urban-farm-year",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "A static, offline-friendly planner for garden calendars, daily care, harvest logs, and next-year growing decisions.",
   "type": "module",

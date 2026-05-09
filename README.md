@@ -48,7 +48,7 @@ Verified feature checklist:
 - URL import is limited by browser CORS policy. When a site blocks direct fetches, open the page and paste the rendered text.
 - Share URLs are for small project snapshots. Use Project JSON export for larger gardens or long histories.
 - The local image classifier is a broad plant-image helper, not a disease diagnosis tool.
-- There is no account login or automatic cross-device sync in v1-v0.3.
+- There is no account login or automatic cross-device sync in v0.3.
 
 ## Local Checks
 

@@ -7,7 +7,7 @@ test('loads the planner and records a harvest', async ({ page }) => {
     'href',
     'https://github.com/baditaflorin/urban-farm-year',
   );
-  await expect(page.getByText(/Version 0\.2\.0/)).toBeVisible();
+  await expect(page.getByText(/Version 0\.3\.0/)).toBeVisible();
 
   await page
     .getByLabel(/Paste seed packets/)
