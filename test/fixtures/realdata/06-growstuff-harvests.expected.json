@@ -1,6 +1,6 @@
 {
   "kind": "harvest_log",
-  "minConfidence": 0.85,
+  "minConfidence": 0.7,
   "fields": [
     { "key": "crop", "value": "tomato" },
     { "key": "crop", "value": "basil" },
