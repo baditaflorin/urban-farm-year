@@ -15,7 +15,7 @@ test('loads the planner and records a harvest', async ({ page }) => {
       'Tomato "Red Pride" Bush. 78 days from transplant. Sow indoors 4-6 weeks before last frost. Space 24 in.',
     );
   await expect(page.getByText('Seed packet draft')).toBeVisible();
-  await expect(page.getByText('Red Pride')).toBeVisible();
+  await expect(page.locator('.inferred-field').filter({ hasText: 'Red Pride' })).toBeVisible();
   await page.getByRole('button', { name: 'Apply draft' }).click();
   await expect(page.getByText(/Applied Seed packet draft/)).toBeVisible();
 
