@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
+import type { UserState } from '../features/garden/types';
 import { makeHarvestCSV, makeSeasonMarkdown, makeStateJSON } from './exporters';
 import { defaultState, parseStateEnvelope } from './stateSchema';
 
 describe('project exporters', () => {
   it('exports and imports the full state envelope', () => {
-    const state = {
+    const state: UserState = {
       ...defaultState,
       harvests: [
         {
@@ -13,7 +14,7 @@ describe('project exporters', () => {
           cropId: 'tomato',
           cropName: 'Tomato',
           quantity: 2.5,
-          unit: 'kg' as const,
+          unit: 'kg',
           note: 'first picking',
         },
       ],

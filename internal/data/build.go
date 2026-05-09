@@ -83,7 +83,7 @@ func BuildArtifacts(rawDir string, outDir string, sourceCommit string) error {
 	return nil
 }
 
-func writeJSON(path string, value any) error {
+func writeJSON(path string, value interface{}) error {
 	file, err := os.Create(path)
 	if err != nil {
 		return fmt.Errorf("create json: %w", err)

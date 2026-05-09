@@ -1,14 +1,26 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import { basename, join } from 'node:path';
+import { z } from 'zod';
 import { inferGardenInput, stableStringify, type SmartDraft } from './index';
 
-type ExpectedFixture = {
-  kind: SmartDraft['kind'];
-  minConfidence: number;
-  fields: Array<{ key: string; value: string | number | boolean }>;
-  anomalies?: string[];
-};
+const expectedFixtureSchema = z.object({
+  kind: z.enum([
+    'seed_packet',
+    'planting_guide',
+    'soil_report',
+    'harvest_log',
+    'location_record',
+    'plant_image_manifest',
+    'gardener_intent',
+    'unknown',
+  ]),
+  minConfidence: z.number(),
+  fields: z.array(
+    z.object({ key: z.string(), value: z.union([z.string(), z.number(), z.boolean()]) }),
+  ),
+  anomalies: z.array(z.string()).optional(),
+});
 
 const fixtureDir = 'test/fixtures/realdata';
 const inputFiles = readdirSync(fixtureDir)
@@ -19,12 +31,13 @@ describe('real-data inference fixtures', () => {
   for (const file of inputFiles) {
     it(`infers ${file}`, () => {
       const input = readFileSync(join(fixtureDir, file), 'utf8');
-      const expected = JSON.parse(
+      const expectedJSON: unknown = JSON.parse(
         readFileSync(
           join(fixtureDir, `${basename(file).replace(/\.[^.]+$/, '')}.expected.json`),
           'utf8',
         ),
-      ) as ExpectedFixture;
+      );
+      const expected = expectedFixtureSchema.parse(expectedJSON);
 
       const started = performance.now();
       const draft = inferGardenInput(input);
