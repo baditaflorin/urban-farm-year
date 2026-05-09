@@ -1,5 +1,6 @@
-const rawAppVersion: unknown = import.meta.env.VITE_APP_VERSION;
-const rawGitCommit: unknown = import.meta.env.VITE_GIT_COMMIT;
+const env = (import.meta as ImportMeta & { env?: Record<string, unknown> }).env ?? {};
+const rawAppVersion: unknown = env.VITE_APP_VERSION;
+const rawGitCommit: unknown = env.VITE_GIT_COMMIT;
 
 export const appVersion = typeof rawAppVersion === 'string' ? rawAppVersion : '0.1.0-dev';
 export const gitCommit = typeof rawGitCommit === 'string' ? rawGitCommit : 'local';

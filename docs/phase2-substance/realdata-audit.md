@@ -388,6 +388,12 @@ The user must remember which planting a task, care note, or harvest belongs to a
 6. Soil and harvest normalization correctly identifies units and values for at least 8 of 10 representative fields in the fixture set.
 7. No wrong-but-confident classifier result: unsupported or low-confidence image cases must say they are low confidence.
 
+## Phase 2 Implementation Result
+
+After implementation, all 10 fixtures produce deterministic drafts and pass the fixture suite. The before/after pass-rate detail is recorded in:
+
+docs/postmortem-phase2-substance.md
+
 ## Explicitly Out Of Scope
 
 - No runtime backend, auth, cross-device sync, or architecture mode change.

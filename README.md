@@ -33,6 +33,7 @@ make build
 ## What It Does
 
 - Builds location-aware planting calendars from frost dates and crop reference data.
+- Infers useful drafts from pasted seed packets, planting guide rows, soil reports, harvest logs, and location rows.
 - Stores garden profile, care logs, soil tests, and harvest records locally in IndexedDB.
 - Uses SunCalc, Open-Meteo, a tiny local ONNX classifier, DuckDB-WASM harvest analytics, and browser-local advice.
 - Publishes a static GitHub Pages app from `main` branch `/docs`.

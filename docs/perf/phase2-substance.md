@@ -20,3 +20,13 @@ The fixture test suite records parse duration for every real-data fixture. The p
 ## Phase 2 Constraint
 
 No worker is introduced unless fixture measurements show main-thread parsing exceeds the budget.
+
+## Measurement Result
+
+Measured May 9, 2026 against `test/fixtures/realdata`:
+
+- Median: 0.56 ms.
+- p95: 4.07 ms.
+- Worst: 4.07 ms.
+
+All 10 real-data fixtures stayed below the budget.

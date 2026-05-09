@@ -7,7 +7,17 @@ test('loads the planner and records a harvest', async ({ page }) => {
     'href',
     'https://github.com/baditaflorin/urban-farm-year',
   );
-  await expect(page.getByText(/Version 0\.1\.0/)).toBeVisible();
+  await expect(page.getByText(/Version 0\.2\.0/)).toBeVisible();
+
+  await page
+    .getByLabel(/Paste seed packets/)
+    .fill(
+      'Tomato "Red Pride" Bush. 78 days from transplant. Sow indoors 4-6 weeks before last frost. Space 24 in.',
+    );
+  await expect(page.getByText('Seed packet draft')).toBeVisible();
+  await expect(page.getByText('Red Pride')).toBeVisible();
+  await page.getByRole('button', { name: 'Apply draft' }).click();
+  await expect(page.getByText(/Applied Seed packet draft/)).toBeVisible();
 
   await page.getByRole('button', { name: 'Plan' }).click();
   await expect(page.getByRole('heading', { name: 'Crop Plan' })).toBeVisible();
