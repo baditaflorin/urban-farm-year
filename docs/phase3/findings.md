@@ -59,3 +59,9 @@
 - No polish-only visual redesign.
 - No full libosmscout artifact pipeline.
 - No medical/agronomic disease diagnosis from classifier images.
+
+## Phase 3 Result
+
+- Fully usable means local-first project movement is now complete: import, apply, persist, export, share small state, print, and restore.
+- Remaining yellow areas are architectural limits of Mode B: direct URL fetches depend on CORS, and share URLs are bounded by browser URL length.
+- The app did not add a backend, did not change the Phase 2 inference engine, and did not introduce polish-only features.

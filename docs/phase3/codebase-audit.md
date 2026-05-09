@@ -54,3 +54,23 @@ This is a measurement-only audit before Phase 3 implementation.
 3. No test for CSV escaping.
 4. No e2e coverage for project import/export controls.
 5. No test that persisted legacy state migrates forward.
+
+## After Phase 3
+
+| Metric                         | Before              | After                                                                                    |
+| ------------------------------ | ------------------- | ---------------------------------------------------------------------------------------- |
+| DRY violations in core modules | 4                   | 0 accepted core violations; exporter/options/schema helpers are single sources of truth. |
+| Production TODO/FIXME/XXX/HACK | 0                   | 0                                                                                        |
+| Undocumented UI stubs          | 1 red control       | 0                                                                                        |
+| State validation boundary      | Cast from IndexedDB | zod envelope + legacy migration                                                          |
+| Output serialization           | In UI component     | `src/lib/exporters.ts`                                                                   |
+| Domain option literals         | Duplicated          | `src/lib/domainOptions.ts`                                                               |
+| Real-user path unit tests      | 17 total tests      | 27 total tests, including export/import/share/migration                                  |
+| E2E project coverage           | None                | Project sample import, export surface, settings, harvest setting effect                  |
+
+## Accepted Boundary Casts
+
+- `src/lib/version.ts` narrows Vite env metadata.
+- `src/lib/duckdb.ts` narrows DuckDB's JSON insert shape where the package exposes the runtime value only through internal types.
+
+Both are explicit library boundaries and do not leak into UI or domain code.

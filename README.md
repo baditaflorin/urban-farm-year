@@ -16,7 +16,7 @@ Support:
 
 https://www.paypal.com/paypalme/florinbadita
 
-Urban Farm Year is a static, offline-friendly planner for garden calendars, daily care, soil tests, harvest logs, and next-year growing decisions.
+Urban Farm Year is a static, offline-friendly planner for garden calendars, daily care, soil tests, harvest logs, project import/export, and next-year growing decisions.
 
 ![Urban Farm Year screenshot](docs/screenshot.png)
 
@@ -32,11 +32,23 @@ make build
 
 ## What It Does
 
-- Builds location-aware planting calendars from frost dates and crop reference data.
-- Infers useful drafts from pasted seed packets, planting guide rows, soil reports, harvest logs, and location rows.
-- Stores garden profile, care logs, soil tests, and harvest records locally in IndexedDB.
-- Uses SunCalc, Open-Meteo, a tiny local ONNX classifier, DuckDB-WASM harvest analytics, and browser-local advice.
-- Publishes a static GitHub Pages app from `main` branch `/docs`.
+Verified feature checklist:
+
+- [x] Builds location-aware planting calendars from frost dates and crop reference data.
+- [x] Infers useful drafts from pasted seed packets, planting guide rows, soil reports, harvest logs, and location rows.
+- [x] Imports TXT, CSV, TSV, HTML text, Markdown, and Urban Farm Year JSON project files from the Project workspace.
+- [x] Exports full project JSON, season Markdown, harvest CSV, print/PDF via browser print, and small share URLs.
+- [x] Stores garden profile, settings, care logs, soil tests, smart input, and harvest records locally in IndexedDB with a versioned migration envelope.
+- [x] Uses SunCalc, Open-Meteo, a tiny local ONNX classifier, DuckDB-WASM harvest analytics, and browser-local advice.
+- [x] Publishes a static GitHub Pages app from `main` branch `/docs`.
+
+## Limitations
+
+- The first app load and static data refresh need network access; saved garden records then live locally in the browser.
+- URL import is limited by browser CORS policy. When a site blocks direct fetches, open the page and paste the rendered text.
+- Share URLs are for small project snapshots. Use Project JSON export for larger gardens or long histories.
+- The local image classifier is a broad plant-image helper, not a disease diagnosis tool.
+- There is no account login or automatic cross-device sync in v1-v0.3.
 
 ## Local Checks
 

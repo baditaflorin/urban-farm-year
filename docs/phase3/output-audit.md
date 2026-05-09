@@ -29,3 +29,25 @@ Status key: green = works end-to-end on user data, yellow = works partially, red
 3. Harvest logs cannot leave the app as CSV.
 4. There is no small share link for a project snapshot.
 5. There is no test proving export then import restores usable state.
+
+## After Phase 3
+
+| Exit point                    | After | Evidence                                                             |
+| ----------------------------- | ----- | -------------------------------------------------------------------- |
+| Season markdown export        | Green | Next-Year and Project surfaces copy/download shared markdown output. |
+| Full state JSON export        | Green | Project JSON exporter writes a versioned state envelope.             |
+| Full state JSON import        | Green | Project imports current envelopes and migrates legacy raw state.     |
+| Harvest CSV export            | Green | Project exports spreadsheet-ready harvest CSV with escaping tests.   |
+| Copy to clipboard             | Green | JSON, markdown, CSV, and share URL copy controls share one helper.   |
+| Share URL                     | Green | Small state hash URLs round-trip in tests and import on app load.    |
+| Print / PDF                   | Green | Project print button plus print CSS produce a browser PDF path.      |
+| API / automation-ready output | Green | JSON and CSV formats are stable, documented, and tested.             |
+| Screenshot export             | Gray  | Not claimed and not needed for core gardening workflow.              |
+| Embed code                    | Gray  | Not claimed and not useful for local-first garden records.           |
+
+## After Counts
+
+- Green: 8
+- Yellow: 0
+- Red: 0
+- Gray: 2

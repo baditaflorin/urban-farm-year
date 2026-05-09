@@ -33,3 +33,29 @@ Status key: green = works end-to-end on user data, yellow = works partially, red
 3. A copied URL is a dead end without explicit CORS guidance.
 4. Batch records require manual paste one file at a time.
 5. In-progress smart input text disappears on reload.
+
+## After Phase 3
+
+| Entry point                        | After  | Evidence                                                                                       |
+| ---------------------------------- | ------ | ---------------------------------------------------------------------------------------------- |
+| Text paste into Smart Garden Input | Green  | Existing Phase 2 fixture path remains tested.                                                  |
+| HTML paste                         | Green  | Project text import routes pasted/rendered HTML text to inference.                             |
+| CSV / TSV text paste               | Green  | Project text import and fixture tests cover harvest CSV and tomato TSV.                        |
+| File upload for garden text data   | Green  | Project file picker accepts TXT, CSV, TSV, HTML, Markdown, and JSON.                           |
+| Drag and drop for garden text data | Green  | Project drop zone calls the same multi-file importer.                                          |
+| Multi-file / batch input           | Green  | Project outcomes list supports per-file results and apply-all drafts.                          |
+| Clipboard read button              | Green  | Clipboard import has permission-aware fallback text.                                           |
+| URL input                          | Yellow | Browser fetch is attempted; CORS-blocked sites get explicit paste-rendered-text guidance.      |
+| Mobile file picker                 | Green  | File input exposes text, JSON, and image accept filters to mobile pickers.                     |
+| Image upload                       | Yellow | Image classification remains in the Classifier tab; Project import skips images with guidance. |
+| Sample/demo input                  | Green  | Project workspace has Load Sample beside user-data controls.                                   |
+| Imported state                     | Green  | Versioned project JSON imports through zod validation/migration.                               |
+| Restored autosave                  | Green  | Smart input text restores when the setting is enabled.                                         |
+| Deep links / shared state          | Green  | Small state snapshots import from hash URLs.                                                   |
+
+## After Counts
+
+- Green: 12
+- Yellow: 2
+- Red: 0
+- Gray: 0

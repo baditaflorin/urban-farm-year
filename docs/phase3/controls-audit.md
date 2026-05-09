@@ -36,3 +36,25 @@ Status key: green = does what the label says end-to-end, yellow = works but inco
 2. Add a project workspace for import/export/settings instead of hiding those flows in unrelated panels.
 3. Add actionable failure states for weather, DuckDB, URL import, and file import.
 4. Make every setting visible, persistent, and behavior-changing.
+
+## After Phase 3
+
+| Surface   | Control                                     | After | Evidence                                                                                           |
+| --------- | ------------------------------------------- | ----- | -------------------------------------------------------------------------------------------------- |
+| Project   | File picker/drop zone                       | Green | Imports text-like files, saved JSON, and explains skipped images.                                  |
+| Project   | Import Text / Read Clipboard / Load Sample  | Green | Each route produces an outcome row or actionable error.                                            |
+| Project   | Fetch URL                                   | Green | Attempts static browser fetch and explains CORS recovery.                                          |
+| Project   | Apply / Apply All Drafts                    | Green | Applies inferred drafts through the same state updater as Smart Input.                             |
+| Project   | Project JSON / Markdown / CSV copy/download | Green | Shared exporters and clipboard/download helpers.                                                   |
+| Project   | Share URL                                   | Green | Copies hash state when under size limit, otherwise points to JSON download.                        |
+| Project   | Print                                       | Green | Calls browser print with print CSS.                                                                |
+| Project   | Start Fresh                                 | Green | Confirmed reset clears IndexedDB state keys.                                                       |
+| Project   | Settings                                    | Green | Weather, default harvest unit, primary export format, and smart input restore all affect behavior. |
+| Next-Year | Season Export controls                      | Green | Copy and download buttons added.                                                                   |
+| Harvest   | Analyze with DuckDB                         | Green | Keeps fallback summary visible and surfaces DuckDB failures.                                       |
+
+## After Counts
+
+- Green: 23
+- Yellow: 2
+- Red: 0

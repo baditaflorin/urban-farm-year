@@ -24,3 +24,14 @@
 3. IndexedDB persistence lacks a versioned migration/import/export contract.
 4. DuckDB is advertised, but runtime failure has no user-facing recovery.
 5. Season export appears complete but lacks output controls.
+
+## After Phase 3
+
+| Claim                      | After         | Evidence                                                               |
+| -------------------------- | ------------- | ---------------------------------------------------------------------- |
+| Harvest logs               | Shipped fully | Logs, CSV export, markdown summaries, and state JSON round trip.       |
+| Offline-friendly           | Honest        | README now states first load/data/weather limitations.                 |
+| IndexedDB persistence      | Shipped fully | Versioned envelope, migration, import/export tests.                    |
+| DuckDB-WASM analytics      | Shipped fully | Button remains lazy-loaded and failure keeps fallback summary visible. |
+| Season export              | Shipped fully | Copy/download controls in Next-Year and Project.                       |
+| Static GitHub Pages Mode B | Shipped fully | No backend added.                                                      |
