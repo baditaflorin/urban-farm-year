@@ -60,6 +60,23 @@ export function OverviewPanel({
           ))}
         </div>
       </section>
+
+      {state.activityLog.length > 0 ? (
+        <section className="panel">
+          <h2 className="section-title">Activity</h2>
+          <div className="mt-4 grid gap-3">
+            {state.activityLog.slice(0, 5).map((entry) => (
+              <article className="task-row" key={entry.id}>
+                <div>
+                  <strong>{entry.action.replaceAll('-', ' ')}</strong>
+                  <span>{entry.detail}</span>
+                </div>
+                <time>{entry.date}</time>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
