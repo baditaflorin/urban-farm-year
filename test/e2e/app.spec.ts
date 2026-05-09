@@ -26,4 +26,19 @@ test('loads the planner and records a harvest', async ({ page }) => {
   await page.getByRole('button', { name: 'Harvest' }).click();
   await page.getByRole('button', { name: 'Add' }).click();
   await expect(page.getByText(/entries/)).toBeVisible();
+
+  await page.getByRole('button', { name: 'Project' }).click();
+  await expect(page.getByRole('heading', { name: 'Load Your Garden Data' })).toBeVisible();
+  await page.getByRole('button', { name: 'Load Sample' }).click();
+  await expect(page.getByText(/sample-seed-packet.txt/)).toBeVisible();
+  await page.getByRole('button', { name: 'Apply All Drafts' }).click();
+  await expect(page.getByText(/Applied 1 draft/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Take Your Work Out' })).toBeVisible();
+  await expect(page.getByText('Project JSON')).toBeVisible();
+  await expect(page.getByText('Harvest CSV')).toBeVisible();
+  await page.getByLabel('Default harvest unit').selectOption('kg');
+
+  await page.getByRole('button', { name: 'Harvest' }).click();
+  await page.getByRole('button', { name: 'Add' }).click();
+  await expect(page.getByText(/kg · 1 entries/)).toBeVisible();
 });

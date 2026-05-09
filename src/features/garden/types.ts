@@ -1,5 +1,11 @@
 import { z } from 'zod';
 import type { SmartDraft } from '../../lib/inference/types';
+import type {
+  ExportFormat,
+  HarvestUnit,
+  NutrientLevel,
+  SoilTexture,
+} from '../../lib/domainOptions';
 
 export const cropSchema = z.object({
   id: z.string(),
@@ -105,7 +111,7 @@ export type HarvestEntry = {
   cropId: string;
   cropName: string;
   quantity: number;
-  unit: 'g' | 'kg' | 'oz' | 'lb' | 'bunch' | 'piece';
+  unit: HarvestUnit;
   note: string;
 };
 
@@ -113,12 +119,19 @@ export type SoilTest = {
   id: string;
   date: string;
   ph: number;
-  nitrogen: 'low' | 'ok' | 'high';
-  phosphorus: 'low' | 'ok' | 'high';
-  potassium: 'low' | 'ok' | 'high';
+  nitrogen: NutrientLevel;
+  phosphorus: NutrientLevel;
+  potassium: NutrientLevel;
   organicMatterPct: number;
-  texture: 'sandy' | 'loam' | 'clay' | 'potting-mix';
+  texture: SoilTexture;
   note: string;
+};
+
+export type UserSettings = {
+  weatherEnabled: boolean;
+  defaultHarvestUnit: HarvestUnit;
+  primaryExportFormat: ExportFormat;
+  rememberSmartInput: boolean;
 };
 
 export type UserState = {
@@ -131,6 +144,8 @@ export type UserState = {
   smartDrafts: SmartDraft[];
   activityLog: ActivityLogEntry[];
   correctionMemory: Record<string, string>;
+  settings: UserSettings;
+  lastSmartInput: string;
 };
 
 export type WeatherDay = {

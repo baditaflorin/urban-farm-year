@@ -26,7 +26,7 @@ async function tryOnnx(features: number[]): Promise<ClassifierResult | null> {
     const tensor = new ort.Tensor('float32', Float32Array.from(features), [1, features.length]);
     const output = await session.run({ features: tensor });
     const first = Object.values(output)[0];
-    const scores = Array.from(first.data as Float32Array);
+    const scores = tensorScores(first?.data);
     const probabilities = softmax(scores);
     const index = probabilities.indexOf(Math.max(...probabilities));
     return {
@@ -38,6 +38,16 @@ async function tryOnnx(features: number[]): Promise<ClassifierResult | null> {
   } catch {
     return null;
   }
+}
+
+function tensorScores(value: unknown): number[] {
+  if (value instanceof Float32Array) {
+    return Array.from(value);
+  }
+  if (Array.isArray(value) && value.every((item) => typeof item === 'number')) {
+    return value;
+  }
+  throw new Error('The local classifier returned an unreadable tensor.');
 }
 
 async function imageFeatures(file: File): Promise<number[]> {

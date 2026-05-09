@@ -23,13 +23,19 @@ export function CarePanel({
   const weather = useQuery({
     queryKey: ['weather', state.profile.latitude, state.profile.longitude],
     queryFn: () => fetchWeather(state.profile),
+    enabled: state.settings.weatherEnabled,
     staleTime: 1000 * 60 * 30,
   });
   const upcoming = upcomingTasks(planTasks, todayISO(), 7);
-  const advice = weatherAdvice(weather.data ?? []);
+  const advice = state.settings.weatherEnabled
+    ? weatherAdvice(weather.data ?? [])
+    : ['Weather advice is paused in Project settings.'];
+  const effectiveCropId = selectedCrops.some((crop) => crop.id === cropId)
+    ? cropId
+    : (selectedCrops[0]?.id ?? '');
 
   const addCare = () => {
-    const crop = selectedCrops.find((item) => item.id === cropId) ?? selectedCrops[0];
+    const crop = selectedCrops.find((item) => item.id === effectiveCropId) ?? selectedCrops[0];
     if (!crop) {
       return;
     }
@@ -66,7 +72,13 @@ export function CarePanel({
             </div>
           ))}
         </div>
-        {weather.data ? (
+        {weather.error ? (
+          <p className="care-advice border-clay/20 bg-clay/10">
+            Weather could not load from Open-Meteo. Your care log still works; check local
+            conditions before watering.
+          </p>
+        ) : null}
+        {state.settings.weatherEnabled && weather.data ? (
           <div className="forecast-strip">
             {weather.data.slice(0, 5).map((day) => (
               <div key={day.date}>
@@ -86,7 +98,7 @@ export function CarePanel({
         <div className="mt-4 grid gap-3 md:grid-cols-[1fr_1fr_2fr_auto]">
           <label className="field">
             <span>Crop</span>
-            <select value={cropId} onChange={(event) => setCropId(event.target.value)}>
+            <select value={effectiveCropId} onChange={(event) => setCropId(event.target.value)}>
               {selectedCrops.map((crop) => (
                 <option key={crop.id} value={crop.id}>
                   {crop.name}

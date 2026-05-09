@@ -2,6 +2,12 @@ import { FlaskConical, Plus } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import type { Crop, SoilTest, UserState } from '../garden/types';
 import { todayISO } from '../../lib/date';
+import {
+  isNutrientLevel,
+  isSoilTexture,
+  nutrientLevels,
+  soilTextures,
+} from '../../lib/domainOptions';
 import { analyzeSoil } from '../../lib/soil';
 
 export function SoilPanel({
@@ -84,11 +90,13 @@ export function SoilPanel({
             <span>Texture</span>
             <select
               value={draft.texture}
-              onChange={(event) =>
-                setDraft({ ...draft, texture: event.target.value as SoilTest['texture'] })
-              }
+              onChange={(event) => {
+                if (isSoilTexture(event.target.value)) {
+                  setDraft({ ...draft, texture: event.target.value });
+                }
+              }}
             >
-              {['sandy', 'loam', 'clay', 'potting-mix'].map((item) => (
+              {soilTextures.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
@@ -132,9 +140,13 @@ function SelectNutrient({
       <span>{label}</span>
       <select
         value={value}
-        onChange={(event) => onChange(event.target.value as SoilTest['nitrogen'])}
+        onChange={(event) => {
+          if (isNutrientLevel(event.target.value)) {
+            onChange(event.target.value);
+          }
+        }}
       >
-        {['low', 'ok', 'high'].map((item) => (
+        {nutrientLevels.map((item) => (
           <option key={item}>{item}</option>
         ))}
       </select>

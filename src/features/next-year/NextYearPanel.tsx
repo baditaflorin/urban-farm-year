@@ -1,9 +1,9 @@
-import { ClipboardCopy, Sparkles } from 'lucide-react';
+import { ClipboardCopy, Download, Sparkles } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import type { Crop, UserState } from '../garden/types';
 import { nextYearAdvice } from '../../lib/localAdvisor';
 import { summarizeHarvests } from '../../lib/harvest';
-import { appVersion, gitCommit, liveUrl, repositoryUrl } from '../../lib/version';
+import { copyText, downloadText, makeSeasonMarkdown } from '../../lib/exporters';
 
 export function NextYearPanel({
   selectedCrops,
@@ -14,10 +14,11 @@ export function NextYearPanel({
 }) {
   const [advice, setAdvice] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [copyStatus, setCopyStatus] = useState('');
   const latestSoil = state.soilTests[0];
   const harvestSummary = useMemo(() => summarizeHarvests(state.harvests), [state.harvests]);
   const markdown = useMemo(
-    () => makeMarkdown({ selectedCrops, state, advice }),
+    () => makeSeasonMarkdown({ selectedCrops, state, advice }),
     [selectedCrops, state, advice],
   );
 
@@ -67,10 +68,41 @@ export function NextYearPanel({
       </section>
 
       <section className="panel">
-        <div className="flex items-center gap-2">
-          <ClipboardCopy size={20} aria-hidden="true" />
-          <h2 className="section-title">Season Export</h2>
+        <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-2">
+            <ClipboardCopy size={20} aria-hidden="true" />
+            <h2 className="section-title">Season Export</h2>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              className="button button-secondary"
+              type="button"
+              onClick={() => {
+                void copyText(markdown)
+                  .then(() => setCopyStatus('Copied markdown.'))
+                  .catch((error: unknown) =>
+                    setCopyStatus(
+                      error instanceof Error
+                        ? error.message
+                        : 'Copy failed. Select the text manually.',
+                    ),
+                  );
+              }}
+            >
+              <ClipboardCopy size={18} aria-hidden="true" />
+              Copy
+            </button>
+            <button
+              className="button button-secondary"
+              type="button"
+              onClick={() => downloadText('urban-farm-year-season.md', markdown, 'text/markdown')}
+            >
+              <Download size={18} aria-hidden="true" />
+              Download
+            </button>
+          </div>
         </div>
+        {copyStatus ? <p className="muted mt-3">{copyStatus}</p> : null}
         <textarea className="export-box mt-4" readOnly value={markdown} />
       </section>
     </div>
@@ -95,35 +127,4 @@ function fallbackAdvice(crops: Crop[]): string[] {
     'Reserve one fast-turnover container for spring and fall greens.',
     'Update seed quantities from the crops that actually earned space.',
   ];
-}
-
-function makeMarkdown({
-  selectedCrops,
-  state,
-  advice,
-}: {
-  selectedCrops: Crop[];
-  state: UserState;
-  advice: string[];
-}) {
-  const lines = [
-    '# Urban Farm Year Export',
-    '',
-    `Live site: ${liveUrl}`,
-    `Repository: ${repositoryUrl}`,
-    `Version: ${appVersion}`,
-    `Commit: ${gitCommit}`,
-    '',
-    `Location: ${state.profile.locationName}`,
-    `Crops: ${selectedCrops.map((crop) => crop.name).join(', ') || 'none'}`,
-    '',
-    '## Advice',
-    ...(advice.length ? advice : fallbackAdvice(selectedCrops)).map((item) => `- ${item}`),
-    '',
-    '## Harvests',
-    ...summarizeHarvests(state.harvests).map(
-      (item) => `- ${item.cropName}: ${Math.round(item.quantity * 10) / 10} ${item.unit}`,
-    ),
-  ];
-  return lines.join('\n');
 }

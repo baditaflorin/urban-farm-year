@@ -13,7 +13,6 @@ export function OverviewPanel({
   selectedCrops: Crop[];
   planTasks: PlanTask[];
   state: UserState;
-  setActiveTab: (tab: string) => void;
 }) {
   const upcoming = upcomingTasks(planTasks, todayISO(), 5);
   const harvest = summarizeHarvests(state.harvests);

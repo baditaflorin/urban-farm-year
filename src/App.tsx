@@ -7,10 +7,11 @@ import {
   Home,
   ImageUp,
   LineChart,
+  Settings,
   Sprout,
   Wheat,
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { CarePanel } from './features/care/CarePanel';
 import { ClassifierPanel } from './features/classifier/ClassifierPanel';
 import type { Crop } from './features/garden/types';
@@ -19,15 +20,26 @@ import { NextYearPanel } from './features/next-year/NextYearPanel';
 import { OverviewPanel } from './features/overview/OverviewPanel';
 import { PlannerPanel } from './features/planner/PlannerPanel';
 import { ProfilePanel } from './features/profile/ProfilePanel';
+import { ProjectPanel } from './features/project/ProjectPanel';
 import { SoilPanel } from './features/soil/SoilPanel';
 import { SmartInputPanel } from './features/smart-input/SmartInputPanel';
 import { useGardenData } from './lib/data';
 import type { SmartDraft } from './lib/inference';
 import { generatePlanTasks } from './lib/planning';
+import { stateJSONFromHash } from './lib/projectIO';
+import { parseStateEnvelope } from './lib/stateSchema';
 import { useGardenStore } from './lib/useGardenStore';
 import { appVersion, gitCommit, paypalUrl, repositoryUrl } from './lib/version';
 
-type TabId = 'overview' | 'plan' | 'care' | 'soil' | 'harvest' | 'classifier' | 'next-year';
+type TabId =
+  | 'overview'
+  | 'plan'
+  | 'care'
+  | 'soil'
+  | 'harvest'
+  | 'classifier'
+  | 'next-year'
+  | 'project';
 
 const tabs: Array<{ id: TabId; label: string; icon: typeof Home }> = [
   { id: 'overview', label: 'Overview', icon: Home },
@@ -37,11 +49,15 @@ const tabs: Array<{ id: TabId; label: string; icon: typeof Home }> = [
   { id: 'harvest', label: 'Harvest', icon: Wheat },
   { id: 'classifier', label: 'Classifier', icon: ImageUp },
   { id: 'next-year', label: 'Next Year', icon: LineChart },
+  { id: 'project', label: 'Project', icon: Settings },
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<TabId>('overview');
+  const [activeTab, setActiveTab] = useState<TabId>(() =>
+    stateJSONFromHash(window.location.hash) ? 'project' : 'overview',
+  );
   const [lastDraft, setLastDraft] = useState<SmartDraft | null>(null);
+  const shareImported = useRef(false);
   const { crops, locations, meta } = useGardenData();
   const store = useGardenStore();
 
@@ -57,6 +73,40 @@ export default function App() {
 
   const dataError = crops.error ?? locations.error ?? meta.error;
   const isLoading = !store.ready || crops.isLoading || locations.isLoading || meta.isLoading;
+
+  useEffect(() => {
+    if (!store.ready || shareImported.current) {
+      return;
+    }
+    shareImported.current = true;
+    const stateJSON = stateJSONFromHash(window.location.hash);
+    if (!stateJSON) {
+      return;
+    }
+    try {
+      const parsedState: unknown = JSON.parse(stateJSON);
+      const envelope = parseStateEnvelope(parsedState);
+      store.updateState(() => ({
+        ...envelope.state,
+        activityLog: [
+          {
+            id: `share-import-${Date.now()}`,
+            date: new Date().toISOString().slice(0, 10),
+            action: 'import-share-url',
+            detail: 'Imported project state from the URL hash.',
+          },
+          ...envelope.state.activityLog,
+        ].slice(0, 30),
+      }));
+      window.history.replaceState(
+        null,
+        document.title,
+        window.location.pathname + window.location.search,
+      );
+    } catch {
+      shareImported.current = true;
+    }
+  }, [store]);
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -136,6 +186,7 @@ export default function App() {
                 selectedCrops={selectedCrops}
                 planTasks={planTasks}
                 store={store}
+                reset={store.reset}
               />
             </div>
           )}
@@ -157,12 +208,14 @@ function ActivePanel({
   selectedCrops,
   planTasks,
   store,
+  reset,
 }: {
   activeTab: TabId;
   allCrops: Crop[];
   selectedCrops: Crop[];
   planTasks: ReturnType<typeof generatePlanTasks>;
   store: ReturnType<typeof useGardenStore>;
+  reset: () => Promise<void>;
 }) {
   if (activeTab === 'plan') {
     return (
@@ -205,16 +258,17 @@ function ActivePanel({
   if (activeTab === 'next-year') {
     return <NextYearPanel selectedCrops={selectedCrops} state={store.state} />;
   }
-  return (
-    <OverviewPanel
-      selectedCrops={selectedCrops}
-      planTasks={planTasks}
-      state={store.state}
-      setActiveTab={setNoop}
-    />
-  );
-}
-
-function setNoop() {
-  return undefined;
+  if (activeTab === 'project') {
+    return (
+      <ProjectPanel
+        crops={allCrops}
+        selectedCrops={selectedCrops}
+        planTasks={planTasks}
+        state={store.state}
+        updateState={store.updateState}
+        reset={reset}
+      />
+    );
+  }
+  return <OverviewPanel selectedCrops={selectedCrops} planTasks={planTasks} state={store.state} />;
 }

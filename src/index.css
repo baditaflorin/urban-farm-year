@@ -233,6 +233,10 @@ textarea {
     @apply grid min-h-52 cursor-pointer place-items-center gap-2 rounded border border-dashed border-canopy/40 bg-canopy/10 p-8 text-center font-black text-canopy;
   }
 
+  .upload-zone small {
+    @apply max-w-xl text-sm font-bold text-ink/60;
+  }
+
   .upload-zone input {
     @apply sr-only;
   }
@@ -331,5 +335,82 @@ textarea {
 
   .debug-box pre {
     @apply mt-3 max-h-96 overflow-auto whitespace-pre-wrap rounded bg-ink p-3 text-xs text-white;
+  }
+
+  .outcome-row {
+    @apply grid min-h-16 grid-cols-[1fr_auto] items-center gap-3 rounded border border-ink/10 bg-paper px-4 py-3;
+  }
+
+  .outcome-row strong {
+    @apply block font-black;
+  }
+
+  .outcome-row span {
+    @apply text-sm text-ink/65;
+  }
+
+  .outcome-error {
+    @apply border-clay/25 bg-clay/10;
+  }
+
+  .outcome-state,
+  .outcome-draft {
+    @apply border-canopy/20 bg-canopy/10;
+  }
+
+  .output-grid {
+    @apply grid gap-3 lg:grid-cols-2;
+  }
+
+  .output-card {
+    @apply grid gap-4 rounded border border-ink/10 bg-paper p-4;
+  }
+
+  .output-card strong {
+    @apply block font-black;
+  }
+
+  .output-card span {
+    @apply text-sm text-ink/65;
+  }
+
+  .settings-grid {
+    @apply grid gap-3 md:grid-cols-2;
+  }
+
+  .check-field {
+    @apply flex min-h-12 items-center gap-3 rounded border border-ink/10 bg-paper px-4 py-3 text-sm font-bold text-ink/75;
+  }
+
+  .check-field input {
+    @apply h-5 w-5 accent-canopy;
+  }
+}
+
+@media print {
+  header,
+  .upload-zone,
+  .button,
+  .icon-button,
+  .tab,
+  .debug-box {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  main {
+    display: block !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .panel,
+  .hero-panel,
+  .metric-card {
+    break-inside: avoid;
+    box-shadow: none !important;
   }
 }

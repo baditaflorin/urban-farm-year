@@ -28,7 +28,9 @@ export function SmartInputPanel({
   updateState: (recipe: (current: UserState) => UserState) => void;
   onDraft: (draft: SmartDraft | null) => void;
 }) {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(() =>
+    state.settings.rememberSmartInput ? state.lastSmartInput : '',
+  );
   const [draft, setDraft] = useState<SmartDraft | null>(null);
   const [smartState, setSmartState] = useState<SmartState>('idle-empty');
   const [error, setError] = useState<string | null>(null);
@@ -72,6 +74,16 @@ export function SmartInputPanel({
       window.clearTimeout(timer);
     };
   }, [input, onDraft]);
+
+  useEffect(() => {
+    if (!state.settings.rememberSmartInput || input === state.lastSmartInput) {
+      return;
+    }
+    const timer = window.setTimeout(() => {
+      updateState((current) => ({ ...current, lastSmartInput: input }));
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [input, state.lastSmartInput, state.settings.rememberSmartInput, updateState]);
 
   const apply = () => {
     if (!draft) return;
@@ -133,6 +145,7 @@ export function SmartInputPanel({
             setInput('');
             setDraft(null);
             onDraft(null);
+            updateState((current) => ({ ...current, lastSmartInput: '' }));
             setSmartState('idle-empty');
           }}
         >

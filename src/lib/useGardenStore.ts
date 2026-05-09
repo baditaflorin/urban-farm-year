@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { UserState } from '../features/garden/types';
-import { defaultState, loadUserState, resetUserState, saveUserState } from './storage';
+import { loadUserState, resetUserState, saveUserState } from './storage';
+import { defaultState } from './stateSchema';
 
 export function useGardenStore() {
   const [state, setState] = useState<UserState>(defaultState);

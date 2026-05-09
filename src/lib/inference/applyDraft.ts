@@ -1,5 +1,6 @@
 import type { Crop, HarvestEntry, SoilTest, UserState } from '../../features/garden/types';
 import { todayISO } from '../date';
+import { isHarvestUnit } from '../domainOptions';
 import type { InferredField, SmartDraft } from './types';
 
 const cropMap: Record<string, string> = {
@@ -122,7 +123,7 @@ function harvestFromDraft(draft: SmartDraft, crops: Crop[]): HarvestEntry | null
   const quantity = numberField(draft, 'quantity');
   const unit = stringField(draft, 'unit');
   const cropName = stringField(draft, 'crop');
-  if (quantity === undefined || !unit || !cropName) {
+  if (quantity === undefined || !unit || !cropName || !isHarvestUnit(unit)) {
     return null;
   }
   const crop = cropByName(crops, cropName);
@@ -132,7 +133,7 @@ function harvestFromDraft(draft: SmartDraft, crops: Crop[]): HarvestEntry | null
     cropId: crop?.id ?? cropName,
     cropName: crop?.name ?? cropName,
     quantity,
-    unit: unit as HarvestEntry['unit'],
+    unit,
     note: `Imported from ${draft.title}.`,
   };
 }

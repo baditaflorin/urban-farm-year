@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Crop } from '../../features/garden/types';
-import { defaultState } from '../storage';
+import { defaultState } from '../stateSchema';
 import { inferGardenInput } from './index';
 import { applySmartDraft } from './applyDraft';
 

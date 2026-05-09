@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import type { Crop, HarvestEntry, HarvestSummary, UserState } from '../garden/types';
 import { displayLongDate, todayISO } from '../../lib/date';
 import { analyzeHarvestWithDuckDB } from '../../lib/duckdb';
+import { harvestUnits, isHarvestUnit } from '../../lib/domainOptions';
 import { summarizeHarvests } from '../../lib/harvest';
 
 export function HarvestPanel({
@@ -16,17 +17,20 @@ export function HarvestPanel({
 }) {
   const [cropId, setCropId] = useState(crops[0]?.id ?? '');
   const [quantity, setQuantity] = useState(250);
-  const [unit, setUnit] = useState<HarvestEntry['unit']>('g');
+  const [unitOverride, setUnitOverride] = useState<HarvestEntry['unit'] | null>(null);
   const [note, setNote] = useState('');
   const [duckSummary, setDuckSummary] = useState<HarvestSummary[] | null>(null);
   const [duckLoading, setDuckLoading] = useState(false);
+  const [duckError, setDuckError] = useState<string | null>(null);
   const summary = useMemo(
     () => duckSummary ?? summarizeHarvests(state.harvests),
     [duckSummary, state.harvests],
   );
+  const effectiveCropId = crops.some((crop) => crop.id === cropId) ? cropId : (crops[0]?.id ?? '');
+  const unit = unitOverride ?? state.settings.defaultHarvestUnit;
 
   const addHarvest = () => {
-    const crop = crops.find((item) => item.id === cropId) ?? crops[0];
+    const crop = crops.find((item) => item.id === effectiveCropId) ?? crops[0];
     if (!crop || quantity <= 0) {
       return;
     }
@@ -50,8 +54,15 @@ export function HarvestPanel({
 
   const runDuckDB = async () => {
     setDuckLoading(true);
+    setDuckError(null);
     try {
       setDuckSummary(await analyzeHarvestWithDuckDB(state.harvests));
+    } catch (error) {
+      setDuckError(
+        error instanceof Error
+          ? `DuckDB analysis failed: ${error.message}. The regular harvest summary is still available.`
+          : 'DuckDB analysis failed. The regular harvest summary is still available.',
+      );
     } finally {
       setDuckLoading(false);
     }
@@ -67,7 +78,7 @@ export function HarvestPanel({
         <div className="mt-4 grid gap-3 md:grid-cols-[1.2fr_0.8fr_0.8fr_2fr_auto]">
           <label className="field">
             <span>Crop</span>
-            <select value={cropId} onChange={(event) => setCropId(event.target.value)}>
+            <select value={effectiveCropId} onChange={(event) => setCropId(event.target.value)}>
               {crops.map((crop) => (
                 <option key={crop.id} value={crop.id}>
                   {crop.name}
@@ -88,9 +99,13 @@ export function HarvestPanel({
             <span>Unit</span>
             <select
               value={unit}
-              onChange={(event) => setUnit(event.target.value as HarvestEntry['unit'])}
+              onChange={(event) => {
+                if (isHarvestUnit(event.target.value)) {
+                  setUnitOverride(event.target.value);
+                }
+              }}
             >
-              {['g', 'kg', 'oz', 'lb', 'bunch', 'piece'].map((item) => (
+              {harvestUnits.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
@@ -120,6 +135,7 @@ export function HarvestPanel({
           </button>
         </div>
         <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {duckError ? <p className="care-advice border-clay/20 bg-clay/10">{duckError}</p> : null}
           {summary.map((item) => (
             <article className="summary-row" key={`${item.cropName}-${item.unit}`}>
               <strong>{item.cropName}</strong>
