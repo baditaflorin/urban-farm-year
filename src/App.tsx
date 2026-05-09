@@ -20,7 +20,9 @@ import { OverviewPanel } from './features/overview/OverviewPanel';
 import { PlannerPanel } from './features/planner/PlannerPanel';
 import { ProfilePanel } from './features/profile/ProfilePanel';
 import { SoilPanel } from './features/soil/SoilPanel';
+import { SmartInputPanel } from './features/smart-input/SmartInputPanel';
 import { useGardenData } from './lib/data';
+import type { SmartDraft } from './lib/inference';
 import { generatePlanTasks } from './lib/planning';
 import { useGardenStore } from './lib/useGardenStore';
 import { appVersion, gitCommit, paypalUrl, repositoryUrl } from './lib/version';
@@ -39,6 +41,7 @@ const tabs: Array<{ id: TabId; label: string; icon: typeof Home }> = [
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>('overview');
+  const [lastDraft, setLastDraft] = useState<SmartDraft | null>(null);
   const { crops, locations, meta } = useGardenData();
   const store = useGardenStore();
 
@@ -120,15 +123,28 @@ export default function App() {
               {dataError instanceof Error ? dataError.message : 'Static data failed to load.'}
             </div>
           ) : (
-            <ActivePanel
-              activeTab={activeTab}
-              allCrops={allCrops}
-              selectedCrops={selectedCrops}
-              planTasks={planTasks}
-              store={store}
-            />
+            <div className="space-y-5">
+              <SmartInputPanel
+                crops={allCrops}
+                state={store.state}
+                updateState={store.updateState}
+                onDraft={setLastDraft}
+              />
+              <ActivePanel
+                activeTab={activeTab}
+                allCrops={allCrops}
+                selectedCrops={selectedCrops}
+                planTasks={planTasks}
+                store={store}
+              />
+            </div>
           )}
           {store.error ? <p className="mt-3 text-sm text-clay">{store.error}</p> : null}
+          {new URLSearchParams(window.location.search).get('debug') === '1' && lastDraft ? (
+            <p className="mt-3 text-xs font-bold text-ink/55">
+              Debug source hash: {lastDraft.provenance.sourceHash}
+            </p>
+          ) : null}
         </section>
       </main>
     </div>

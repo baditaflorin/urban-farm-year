@@ -30,6 +30,9 @@ export const defaultState: UserState = {
   harvests: [],
   soilTests: [],
   llmEndpoint: '',
+  smartDrafts: [],
+  activityLog: [],
+  correctionMemory: {},
 };
 
 async function db() {

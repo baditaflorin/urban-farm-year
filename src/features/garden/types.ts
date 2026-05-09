@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { SmartDraft } from '../../lib/inference/types';
 
 export const cropSchema = z.object({
   id: z.string(),
@@ -127,6 +128,9 @@ export type UserState = {
   harvests: HarvestEntry[];
   soilTests: SoilTest[];
   llmEndpoint: string;
+  smartDrafts: SmartDraft[];
+  activityLog: ActivityLogEntry[];
+  correctionMemory: Record<string, string>;
 };
 
 export type WeatherDay = {
@@ -143,4 +147,12 @@ export type HarvestSummary = {
   quantity: number;
   unit: string;
   entries: number;
+};
+
+export type ActivityLogEntry = {
+  id: string;
+  draftId?: string;
+  date: string;
+  action: string;
+  detail: string;
 };
